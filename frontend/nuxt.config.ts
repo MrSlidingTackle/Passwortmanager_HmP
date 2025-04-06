@@ -10,4 +10,7 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
+  devServer: {
+    port: 3001,
+  },
 });

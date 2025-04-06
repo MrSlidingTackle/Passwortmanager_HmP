@@ -1,0 +1,13 @@
+{
+    "entry": [
+        {
+            "id": "1",
+            "name": "Youtube",
+            "username": "idk",
+            "url": "youtube.com",
+            "passwort": "12345",
+            "farbe": "#D00000",
+            "created": "nerv nicht"
+        }
+    ]
+}

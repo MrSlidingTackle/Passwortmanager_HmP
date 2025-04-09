@@ -1,13 +1,61 @@
 {
-    "entry": [
-        {
-            "id": "1",
-            "name": "Youtube",
-            "username": "idk",
-            "url": "youtube.com",
-            "passwort": "12345",
-            "farbe": "#D00000",
-            "created": "nerv nicht"
-        }
-    ]
+  "entry": [
+    {
+      "id": "1",
+      "name": "Youtube",
+      "username": "idk",
+      "url": "youtube.com",
+      "passwort": "12345",
+      "farbe": "#D00000",
+      "created": "nerv nicht"
+    },
+    {
+      "id": "2",
+      "username": "aha",
+      "url": "facebook.com",
+      "name": "Facebook",
+      "passwort": "KleinerGruenerKaktus123!",
+      "farbe": "#2500CC",
+      "created": "letztes jahr"
+    },
+    {
+      "id": "3",
+      "username": "egirlhunter",
+      "url": "instagram.com",
+      "name": "Instagram",
+      "passwort": "iAmSoAloneCrying420!",
+      "farbe": "#E1009E",
+      "created": "zlang"
+    },
+    {
+      "id": "4",
+      "username": "egirlhunter",
+      "url": "instagram.com",
+      "name": "Was anderes",
+      "passwort": "iAmSoAloneCrying420!",
+      "farbe": "#F5BA25",
+      "created": "zlang"
+    },
+    {
+      "id": "8999",
+      "username": "graetssa",
+      "url": "hs-albsig.de",
+      "name": "HS Albsig",
+      "passwort": "SickBackshotsBro!",
+      "farbe": "#01dece",
+      "created": "heute"
+    }
+  ],
+  "login": [
+    {
+      "id": "1",
+      "username": "graetssa",
+      "passwort": "1234"
+    },
+    {
+      "id": "aecf",
+      "username": "graetscs",
+      "passwort": "4321"
+    }
+  ]
 }

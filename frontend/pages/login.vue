@@ -60,7 +60,8 @@
           if (result.length == 0){
             alert("Wrong Credentials!")
           } else {
-            window.localStorage.setItem("username", result[0].username);
+            window.localStorage.setItem("user", result.id);
+            window.localStorage.setItem("admin", result.isAdmin)
             window.location.href="http://localhost:3001/"
           }
       } catch (err) {

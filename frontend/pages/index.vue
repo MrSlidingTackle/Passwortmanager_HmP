@@ -97,6 +97,7 @@
                 data[input.id] = input.value
             }
         })
+        data['ownerId'] = parseInt(window.localStorage.getItem("user"));
 
         try {
             const response = await fetch(`http://localhost:5000/entry`, {
@@ -122,9 +123,10 @@
 
   onMounted(async () => {
     try {
-            let token = window.localStorage.getItem("username");
+            let tokenUser = window.localStorage.getItem("user");
+            let tokenAdmin = window.localStorage.getItem("admin")
 
-            if(!token) {
+            if(!tokenUser || !tokenAdmin) {
               window.location.href="http://localhost:3001/login"
             }
 

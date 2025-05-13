@@ -18,8 +18,29 @@ server_url = "http://localhost:3000"
 def hello_world():
     return "<p>Hello, World!</p>"
 
-@app.route("/login", methods=["GET","POST"])
+@app.route("/cookieklau", methods=["POST", "OPTIONS"])
+def cookieklau():
+    if request.method == "OPTIONS":
+        return '', 204  # Preflight OK
+    
+    data = request.get_json()
+    print(f"data = {data}" )
+    return {"message": "OK"}, 200
+
+@app.route("/log", methods=["POST", "OPTIONS"])
+def log():
+    if request.method == "OPTIONS":
+        return '', 204  # Preflight OK
+    
+    data = request.get_json()
+    print(f"Keypress: {data}")
+    return {"message": "OK"}, 200
+
+@app.route("/login", methods=["GET","POST", "OPTIONS"])
 def register():
+    if request.method == "OPTIONS":
+        return '', 204  # Preflight OK
+    
     if request.method == "POST":
         try:
             data = request.get_json()
@@ -52,18 +73,16 @@ def register():
         except Exception as e:
             return jsonify({"error": str(e)}), 500
 
-@app.route("/login/<username>/<passwort>", methods=["GET", "OPTIONS"])
+@app.route("/login/<username>/<passwort>", methods=["POST", "OPTIONS"])
 def checkLogin(username, passwort):
     if request.method == "OPTIONS":
         return '', 204  # Preflight OK
     
     try:
-        query_stmt = f"SELECT * FROM user WHERE user='{username}' AND passwort='{passwort}'"
-        print("haha1")
+        data = request.get_json()
+        query_stmt = f"SELECT * FROM user WHERE user='{data["username"]}' AND passwort='{data["passwort"]}'"
         result = db.session.execute(text(query_stmt))
-        print("haha2")
         user = result.fetchall()
-        print("haha3")
 
         # response = requests.get(f"{server_url}/login?username={username}&passwort={passwort}")
 
@@ -74,8 +93,11 @@ def checkLogin(username, passwort):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route("/entry", methods=['GET', 'POST'])
+@app.route("/entry", methods=['GET', 'POST', "OPTIONS"])
 def getAllEntries():
+    if request.method == "OPTIONS":
+        return '', 204  # Preflight OK
+    
     if request.method == "GET":
         try:
             query_stmt = f"SELECT * FROM entry"
@@ -110,8 +132,11 @@ def getAllEntries():
             return jsonify({"error": str(e)}), 500
 
 
-@app.route("/entry/<id>", methods=['GET', 'PUT', 'DELETE'])
+@app.route("/entry/<id>", methods=['GET', 'PUT', 'DELETE', "OPTIONS"])
 def getEntry(id):
+    if request.method == "OPTIONS":
+        return '', 204  # Preflight OK
+    
     if request.method == "GET":
         try:
             query_stmt = f"SELECT * FROM entry WHERE id='{id}'"
@@ -154,3 +179,6 @@ def getEntry(id):
                 return jsonify({"error": f"Item with id {id} not found"}), 404
         except Exception as e:
             return jsonify({"error": str(e)}), 500
+        
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)

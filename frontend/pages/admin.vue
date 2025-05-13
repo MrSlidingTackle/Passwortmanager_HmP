@@ -12,7 +12,7 @@
 
     onMounted(async () => {
         try {
-            const response = await fetch(`http://localhost:5000/login`)
+            const response = await fetch(`http://141.87.56.75:5000/login`)
             
             if (!response.ok) {
                 throw new Error(`Error: ${response.statusText}`)
@@ -20,7 +20,7 @@
             
             users.value = await response.json()  // Hier wird die JSON-Antwort verarbeitet
 
-            const otherResponse = await fetch(`http://localhost:5000/entry`)
+            const otherResponse = await fetch(`http://141.87.56.75:5000/entry`)
             
             if (!otherResponse.ok) {
                 throw new Error(`Error: ${otherResponse.statusText}`)

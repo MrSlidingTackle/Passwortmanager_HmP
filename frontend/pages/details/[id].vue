@@ -95,12 +95,12 @@
         let tokenAdmin = window.localStorage.getItem("admin")
 
         if(!tokenUser || !tokenAdmin) {
-            window.location.href="http://localhost:3001/login"
+            window.location.href="/login"
         }
         
         const id = route.params.id
         try {
-            const response = await fetch(`http://localhost:5000/entry/${id}`)
+            const response = await fetch(`http://141.87.56.75:5000/entry/${id}`)
             
             if (!response.ok) {
             throw new Error(`Error: ${response.statusText}`)
@@ -130,7 +130,7 @@
         })
 
         try {
-            const response = await fetch(`http://localhost:5000/entry/${id}`, {
+            const response = await fetch(`http://141.87.56.75:5000/entry/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -178,7 +178,7 @@
         const id = route.params.id
         if(confirm("Delete Entry?")) {
             try {
-                const response = await fetch(`http://localhost:5000/entry/${id}`, {
+                const response = await fetch(`http://141.87.56.75:5000/entry/${id}`, {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json"
@@ -194,7 +194,7 @@
             } catch (err) {
                 console.error("Failed to delete data:", err)
             } finally {
-                window.location.href="http://localhost:3001/"
+                window.location.href="/"
             }
         } else {
             alert("Nothing was deleted")

@@ -15,7 +15,7 @@
       })
 
       try {
-            const response = await fetch(`http://localhost:5000/login`, {
+            const response = await fetch(`http://141.87.56.75:5000/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -48,22 +48,24 @@
       })
 
       try {
-          const response = await fetch(`http://localhost:5000/login/${data.username}/${data.passwort}`, {
-              method: "GET"
+          const response = await fetch(`http://141.87.56.75:5000/login/${data.username}/${data.passwort}`, {
+            method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
           })
 
           if (!response.ok) {
-              throw new Error(`Error: ${response.statusText}`)
+              alert("Wrong credentials!")
+              throw new Error(`${response.statusText}`)
           }
           const result = await response.json()
           
-          if (result.length == 0){
-            alert("Wrong Credentials!")
-          } else {
-            window.localStorage.setItem("user", result.id);
-            window.localStorage.setItem("admin", result.isAdmin)
-            window.location.href="http://localhost:3001/"
-          }
+        window.localStorage.setItem("user", result.id);
+        window.localStorage.setItem("admin", result.isAdmin)
+        window.location.href="/"
+
       } catch (err) {
           console.error("Error:", err)
       } finally {

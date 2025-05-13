@@ -4,7 +4,7 @@
       if(window.localStorage.getItem("admin") == 1) {
         console.log("basst");
         let aTag = document.createElement('a');
-        aTag.href = 'http://localhost:3001/admin';
+        aTag.href = '/admin';
         aTag.textContent = "(Admin-Panel)";
         document.getElementById("nav").appendChild(aTag);
       }
@@ -26,7 +26,7 @@
         <p class="text-2xl p-2">SG-Passwortmanager</p>
         <div class="absolute right-0">
             <p class="text-xl p-2">Hallo, Benutzer!
-                <a @click="removeToken" href="http://localhost:3001/login">(Logout)</a>
+                <a @click="removeToken" href="/login">(Logout)</a>
             </p>
         </div>
     </div>
